@@ -1,0 +1,55 @@
+<app-view-customer></app-view-customer>
+
+<div class="modal fade" id="modalCustomerSearch" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Search Customer</h5>
+                <button type="button" class="close" id="closeCustomerSearch" data-dismiss="modal"
+                    (click)="clearSearch()">&times;</button>
+            </div>
+            <mat-progress-bar mode="indeterminate" *ngIf="busy"></mat-progress-bar>
+            <div class="modal-body">
+                <div class="row mb-5">
+                    <div class="col">
+                        <form (submit)="search()">
+                            <div class="input-group">
+                                <input type="search" name="search" class="form-control" [(ngModel)]="searchText"
+                                    placeholder="Customer Name" aria-label="Customer Name"
+                                    aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit" (click)="search()">
+                                        <!-- <i class="fa fa-search"></i> -->
+                                        <mat-icon class="sm-size">search</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <h5 *ngIf="matchNotFound">No Match Found</h5>
+                <ng-container *ngFor="let customer of customers; let i = index">
+                    <div class="card card-btn border border-0" data-dismiss="modal" (click)="select(customer)">
+                        <div class="row no-gutters">
+                            <div class="col">
+                                <div class="card-body">
+                                    <div class="card-content">
+                                        <ngx-avatar name="{{ customer.firstName }}" fgColor="white" size="50"
+                                            textSizeRatio="2.5" [round]="true">
+                                        </ngx-avatar>
+                                    </div>
+
+                                    <div class="card-content pl-4">
+                                        <h5 class="card-title">{{ customer.firstName }} {{ customer.lastName }}</h5>
+                                        <h6 class="card-text text-muted">{{ customer.phoneNumber }}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>

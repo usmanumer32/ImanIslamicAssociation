@@ -1,0 +1,162 @@
+<app-payment></app-payment>
+<app-update-customer></app-update-customer>
+<app-dialog-confirm></app-dialog-confirm>
+
+<div class="main-form">
+    <div class="modal fade customer" id="modalViewCustomer" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content customer-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title">Customer Preview</h5>
+                    <div>
+                        <!-- <button mat-flat-button class="mr-2" color="primary" (click)="makePayment()">Pay</button> -->
+                        <button class="ml-3" mat-mini-fab color="primary" (click)="makePayment()" *ngIf="showPayBtn">
+                            <mat-icon class="cursor-pointer cursor">attach_money</mat-icon>
+                        </button>
+                        <button class="ml-3" mat-mini-fab color="primary" (click)="updateCustomer()">
+                            <mat-icon class="cursor-pointer cursor">create</mat-icon>
+                        </button>
+                        <button class="ml-3" mat-mini-fab color="primary" data-toggle="modal"
+                        data-target="#modalDeleteVoid" (click)="dialogDeleteCustomer()">
+                            <mat-icon class="cursor-pointer cursor">delete_outline</mat-icon>
+                        </button>
+                    </div>
+
+                </div>
+                <div class="modal-body" *ngIf="customer">
+                    <ng-container *ngIf="customer.gender == 'Male'">
+                        <img class="col-sm-6 rounded mx-auto d-block" src="assets/man.PNG">
+                    </ng-container>
+                    <ng-container *ngIf="customer.gender == 'Female'">
+                        <img class="col-sm-6 rounded mx-auto d-block" src="assets/woman.PNG">
+                    </ng-container>
+
+                    <div>
+                        <div class="row">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-3">
+                                <label class="float-left col-form-label">Name</label>
+                            </div>
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-5">
+                                <label class="col-form-label font-weight-bold">{{ customer.firstName }}
+                                    {{ customer.lastName }}</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-3">
+                                <label class="float-left col-form-label">Phone Number</label>
+                            </div>
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-5">
+                                <label class="col-form-label font-weight-bold">{{ customer.phoneNumber }}</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-3">
+                                <label class="float-left col-form-label">Address</label>
+                            </div>
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-5">
+                                <label class="col-form-label font-weight-bold">{{ customer.address }}</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-3">
+                                <label class="float-left col-form-label">Payment Plan</label>
+                            </div>
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-5">
+                                <label class="col-form-label font-weight-bold">{{ customer.paymentPlan }}</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-3">
+                                <label class="float-left col-form-label">Plage Amount</label>
+                            </div>
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-5">
+                                <label class="col-form-label font-weight-bold">ETB {{ customer.plageAmount }}</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-3">
+                                <label class="float-left col-form-label">Expected Amount</label>
+                            </div>
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-5">
+                                <label class="col-form-label font-weight-bold">ETB {{ customer.expectedAmount }}</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-3">
+                                <label class="float-left col-form-label">Paid Amount</label>
+                            </div>
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-5">
+                                <label class="col-form-label font-weight-bold">ETB {{ customer.paidAmount }}</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-3">
+                                <label class="float-left col-form-label">Expected Month</label>
+                            </div>
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-5">
+                                <label class="col-form-label font-weight-bold"> {{ customer.expectedMonth }}
+                                    Months</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-3">
+                                <label class="float-left col-form-label">Paid Month</label>
+                            </div>
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-5">
+                                <label class="col-form-label font-weight-bold">{{ customer.paidMonth }} Months</label>
+                            </div>
+                        </div>
+
+                        <hr>
+                        <div class="row" *ngIf="paidMonths.length > 0">
+                            <div class="col-sm-5"></div>
+                            <div class="col-sm-4">
+                                <label class="col-form-label font-weight-bold">Paid Months</label>
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="paidMonths.length > 0">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-8">
+                                <mat-chip-list aria-label="Fish selection">
+                                    <ng-container *ngFor="let month of paidMonths; let i = index">
+                                        <mat-chip>{{month}}</mat-chip>
+                                    </ng-container>
+                                </mat-chip-list>
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

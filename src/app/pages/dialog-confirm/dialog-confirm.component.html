@@ -1,0 +1,18 @@
+<div class="modal fade" id="modalDeleteVoid" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmation Alert</h5>
+                <button id="closeVoid" type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <p *ngIf="message" [innerHtml]="message"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" (click)="confirm(false)">No</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="confirm(true)">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>

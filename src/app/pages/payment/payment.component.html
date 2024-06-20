@@ -1,0 +1,32 @@
+<div class="main-form">
+    <div class="modal fade customer" id="modalPayment" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content customer-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create Payment</h5>
+                    <button type="button" class="close" data-dismiss="modal" (click)="resetPayment()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                        <mat-form-field class="w-50 pr-5">
+                            <input type="number" matInput placeholder="Amount" formControlName="amount">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Months</mat-label>
+                            <mat-select formControlName="months" multiple>
+                                <mat-option *ngFor="let month of months" [value]="month">{{ month }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <div mat-dialog-actions align="end" class="w-100">
+                            <button class="btn-lg" mat-raised-button color="primary" type="submit"
+                                cdkFocusInitial>Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

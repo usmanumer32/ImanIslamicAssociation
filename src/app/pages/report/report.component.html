@@ -1,0 +1,25 @@
+<app-add-customer></app-add-customer>
+<app-search-customer></app-search-customer>
+
+<div class="navbar">
+    <img class="logo" src="assets/logo.jpg" routerLink="/home">
+
+    <div class="right-navitems">
+        <button class="green" mat-mini-fab data-toggle="modal" data-target="#modalCrateCustomer">
+            <mat-icon class="cursor-pointer cursor">add</mat-icon>
+        </button>
+        <button class="green ml-3" mat-mini-fab data-toggle="modal" data-target="#modalCustomerSearch">
+            <mat-icon class="cursor-pointer cursor">search</mat-icon>
+        </button>
+        <button class="green ml-3" mat-mini-fab routerLink="/report">
+            <mat-icon class="cursor-pointer cursor">dashboard</mat-icon>
+        </button>
+    </div>
+</div>
+
+<header class="showcase">
+    <div class="mask showcase-inner">
+        <p>Total Customers</p>
+        <h1>{{count}}</h1>
+    </div>
+</header>

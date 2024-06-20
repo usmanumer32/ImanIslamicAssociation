@@ -1,0 +1,74 @@
+<div class="main-form">
+    <div class="modal fade customer" id="modalCrateCustomer" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content customer-modal">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" (click)="resetCustomer()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+                        <mat-form-field class="w-50 pr-5">
+                            <input matInput placeholder="First name" formControlName="firstName">
+                        </mat-form-field>
+
+                        <mat-form-field class="w-50 pr-5">
+                            <input matInput placeholder="Last Name" formControlName="lastName">
+                        </mat-form-field>
+
+                        <mat-form-field class="w-50 pr-5">
+                            <mat-label>Gender</mat-label>
+                            <mat-select formControlName="gender" required>
+                                <mat-option *ngFor="let gender of genders; let i = index" [value]="gender">
+                                    <ng-container>
+                                        {{ gender }}
+                                    </ng-container>
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field class="w-50 pr-5">
+                            <input matInput placeholder="Address" formControlName="address">
+                        </mat-form-field>
+
+                        <mat-form-field class="w-50 pr-5">
+                            <input matInput placeholder="Phone Number" formControlName="phoneNumber">
+                        </mat-form-field>
+
+                        <mat-form-field class="w-50 pr-5">
+                            <mat-label>Branch</mat-label>
+                            <mat-select formControlName="branch" required>
+                                <mat-option *ngFor="let branch of branches; let i = index" [value]="branch.name">
+                                    <ng-container>
+                                        {{ branch.name }}
+                                    </ng-container>
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field class="w-50 pr-5">
+                            <mat-label>Payment Plan</mat-label>
+                            <mat-select formControlName="paymentPlan" required>
+                                <mat-option *ngFor="let paymentPlan of paymentPlans; let i = index"
+                                    [value]="paymentPlan.name">
+                                    <ng-container>
+                                        {{ paymentPlan.name }}
+                                    </ng-container>
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field class="w-50 pr-5">
+                            <input matInput placeholder="Plage Amount" formControlName="plageAmount">
+                        </mat-form-field>
+
+                        <div mat-dialog-actions align="end" class="w-100">
+                            <button class="btn-lg" mat-raised-button color="primary" type="submit"
+                                cdkFocusInitial>Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
